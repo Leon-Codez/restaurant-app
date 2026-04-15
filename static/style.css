@@ -1,0 +1,34 @@
+/* ===== Global Styles for all files ===== */
+body {
+  font-family: Arial, sans-serif;
+  color: white; /* color: white for all of the txt to be white, color: #FFFFFF; */
+  background-color: black; /* background-color: black for the background to be black, background-color: #000000; */
+}
+
+/* ===== Menu Page ===== */
+.menu-image {
+  width: 500px;
+  height: auto;
+  overflow: hidden;
+}
+/* hover effect for menu images that makes them slightly larger when hovered over */
+
+/* ===== Link to Home Page ===== */
+.menu-link {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.menu-link:hover {
+  transform: scale(1); /* scale(5) makes the link 5 times largr when hovered over */
+  transition: transform 0.4s ease;
+}
+
+/* ==== Menu Item Hover Effect ==== */
+
+.menu-image:hover {
+  transform: scale(1.2); 
+  transition: transform 0.4s ease; /* transition for smooth scaling effect */
+}
+
+/* ===== Cart Page ===== */

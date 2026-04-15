@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Cart</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<!-- Cart page, should display the items added to the cart that is stored in the session and brought over from the menu page
+ the user should have the ability to modify the quantities or remove items from the cart-->
+
+<body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p style="color: lightgreen;">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <h1>Cart</h1>
+    <div class = "cart-link">
+        <button><a href="{{ url_for('menu') }}">Back to Menu</a></button>
+        <button><a href="{{ url_for('home') }}">Home</a></button>
+    </div>
+
+    <div class="cart-container">
+    {% if cart_items %}
+
+        {% set total = 0 %}
+
+            {% for item in cart_items %}
+                <div class="cart-item">
+                    <h3>{{ item.name }}</h3>
+                    <p>Price: ${{ "%.2f"|format(item.price) }}</p>
+                    <p>Quantity: {{ item.quantity }}</p>
+
+                    {% set total = total + (item.price * item.quantity) %}
+
+                    <form action="{{ url_for('remove_from_cart') }}" method="POST">
+                        <input type="hidden" name="name" value="{{ item.name }}">
+                        <button type="submit">Remove</button>
+                    </form>
+                </div>
+            {% endfor %}
+
+            <h2>Total: ${{ "%.2f"|format(total) }}</h2>
+
+        {% else %}
+            <p>Your cart is empty.</p>
+        {% endif %}
+    </div>
+    
+</body>
+</html>
+
+
+<!-- That's all for now! -->
